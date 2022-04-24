@@ -51,7 +51,7 @@ class ProductCartController extends Controller
             return redirect()->back()->with('error', 'Yetersiz stok. Lütfen daha az miktar sepete ekleyin.');
         }
         if (ProductCart::where('product_id', $request->product_id)->where('user_id',Auth::id())->where('payment_id', null)->exists()) {
-            $productCart = ProductCart::where('product_id', $request->product_id)->first();
+            $productCart = ProductCart::where('product_id', $request->product_id)->where('user_id',Auth::id())->where('payment_id', null)->first();
             $productCart->quantity += $request->quantity;
             $productCart->save();
         } else {
