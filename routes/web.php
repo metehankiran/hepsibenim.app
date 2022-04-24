@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/setup', [HomeController::class, 'setup']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{product:slug}', [HomeController::class, 'product'])->name('product.show');
 Route::get('/products', [HomeController::class, 'products'])->name('products');

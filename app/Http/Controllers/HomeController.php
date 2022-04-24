@@ -10,6 +10,7 @@ use App\Models\ProductCart;
 use App\Models\Setting;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -110,5 +111,12 @@ class HomeController extends Controller
     {
         $setting = Setting::first();
         return view('frontend.pages.about', compact('setting'));
+    }
+
+    public function setup()
+    {
+        Artisan::call('migrate:fresh');
+        Artisan::call('db:seed');
+        return redirect()->route('home')->with('success', 'Veritabanı başarıyla güncellendi!');
     }
 }
