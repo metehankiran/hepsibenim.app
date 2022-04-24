@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCartController extends Controller
 {
@@ -49,7 +50,7 @@ class ProductCartController extends Controller
         if ($quantity < $request->quantity) {
             return redirect()->back()->with('error', 'Yetersiz stok. Lütfen daha az miktar sepete ekleyin.');
         }
-        if (ProductCart::where('product_id', $request->product_id)->where('payment_id', null)->exists()) {
+        if (ProductCart::where('product_id', $request->product_id)->where('user_id',Auth::id())->where('payment_id', null)->exists()) {
             $productCart = ProductCart::where('product_id', $request->product_id)->first();
             $productCart->quantity += $request->quantity;
             $productCart->save();

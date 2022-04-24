@@ -48,7 +48,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $connect_web = simplexml_load_file('http://www.tcmb.gov.tr/kurlar/today.xml');
+            $connect_web = simplexml_load_file('http://www.tcmb.gov.tr/kurlar/today.xml');
         $currency['usd_buying'] = $connect_web->Currency[0]->BanknoteBuying;
         $currency['usd_selling'] = $connect_web->Currency[0]->BanknoteSelling;
         $currency['euro_buying'] = $connect_web->Currency[3]->BanknoteBuying;

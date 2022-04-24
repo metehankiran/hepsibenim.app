@@ -64,6 +64,7 @@
                   <div class="position-relative me-n4 mb-5">
                     <div class="product-badge product-available mt-n1"><i class="ci-security-check"></i>Stokta {{ $product->stock }} ürün var</div>
                   </div>
+                  @if ($product->stock > 0)
                   <form action="{{ route('product-cart.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -76,6 +77,11 @@
                         <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Sepete Ekle</button>
                       </div>
                   </form>
+                  @else
+                  <div class="d-flex align-items-center pt-2 pb-4">
+                    <span class="text-muted">Stokta ürün yok</span>
+                  </div>
+                  @endif
                   <!-- Product panels-->
                   <div class="accordion mb-4" id="productPanels">
                     <div class="accordion-item">
