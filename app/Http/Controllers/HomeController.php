@@ -84,7 +84,7 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $brands = Brand::all();
         $setting = Setting::first();
-        $lastProducts = Product::latest()->take(12)->get();
+        $lastProducts = Product::where('is_active',true)->latest()->take(12)->get();
         return view('frontend.pages.index', compact('lastProducts', 'sliders', 'brands', 'setting', 'currency'));
     }
 

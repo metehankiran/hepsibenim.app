@@ -81,7 +81,7 @@
             <div class="col">
                 <div class="form-group">
                     <label>Açık Adres</label>
-                    <input type="text" class="form-control" name="address" value="{{ old('address', $user->address->address) }}" placeholder="Üye Açık Adresi...">
+                    <input type="text" class="form-control" name="address" value="{{ old('address', $user->address->address) }}" placeholder="Üye Açık Adresi..." required>
                 </div>
             </div>
         </div>
@@ -89,25 +89,25 @@
             <div class="col">
                 <div class="form-group">
                     <label>Ülke</label>
-                    <input type="text" class="form-control" name="country" value="{{ old('country', $user->address->country) }}" placeholder="Üye Ülke...">
+                    <input type="text" class="form-control" name="country" value="{{ old('country', $user->address->country) }}" placeholder="Üye Ülke..." required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>İl</label>
-                    <input type="text" class="form-control" name="state" value="{{ old('state', $user->address->state) }}" placeholder="Üye İl...">
+                    <input type="text" class="form-control" name="state" value="{{ old('state', $user->address->state) }}" placeholder="Üye İl..." required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>İlçe</label>
-                    <input type="text" class="form-control" name="city" value="{{ old('city', $user->address->city) }}" placeholder="Üye İlçe...">
+                    <input type="text" class="form-control" name="city" value="{{ old('city', $user->address->city) }}" placeholder="Üye İlçe..." required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Posta Kodu</label>
-                    <input type="text" class="form-control" name="zip" value="{{ old('zip', $user->address->zip) }}" placeholder="Üye Posta Kodu...">
+                    <input type="text" class="form-control" name="zip" value="{{ old('zip', $user->address->zip) }}" placeholder="Üye Posta Kodu..." required>
                 </div>
             </div>
         </div>
@@ -127,25 +127,25 @@
             <div class="col">
                 <div class="form-group">
                     <label>Kart İsim Soyisim</label>
-                    <input type="text" class="form-control" name="card_name" value="{{ old('card_name', $user->paymentMethod->name) }}">
+                    <input type="text" class="form-control" name="card_name" value="{{ old('card_name', $user->paymentMethod->name) }}" required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Kart Numarası</label>
-                    <input type="text" class="form-control" name="card_number" value="{{ old('card_number', $user->paymentMethod->card_number) }}">
+                    <input type="text" class="form-control" name="card_number" value="{{ old('card_number', $user->paymentMethod->card_number) }}" required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>Son Kullanma Tarihi</label>
-                    <input type="text" class="form-control" name="expiration_date" value="{{ old('expiration_date', $user->paymentMethod->expiration_date) }}">
+                    <input type="text" class="form-control" name="expiration_date" value="{{ old('expiration_date', $user->paymentMethod->expiration_date) }}" required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label>CVV</label>
-                    <input type="text" class="form-control" name="cvv" value="{{ old('cvv', $user->paymentMethod->cvv) }}">
+                    <input type="text" class="form-control" name="cvv" value="{{ old('cvv', $user->paymentMethod->cvv) }}" required>
                 </div>
             </div>
         </div>
