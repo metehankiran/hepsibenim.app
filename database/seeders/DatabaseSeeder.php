@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123123123'),
+            'is_admin' => true,
             'remember_token' => Str::random(10),
         ]);
         Category::create([
