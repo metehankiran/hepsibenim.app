@@ -180,7 +180,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $user->image = $request->image->store('public/images/user');
         }
-        if($request->password == $request->password_confirmation && $request->password != null && $request->password_confirmation != null) {
+        if($request->password == $request->password_confirmation && (empty($request->password) && empty($request->password_confirmation))) {
             $user->password = bcrypt($request->password);
         }
         else{

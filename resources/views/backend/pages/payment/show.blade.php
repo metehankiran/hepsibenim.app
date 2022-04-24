@@ -35,6 +35,7 @@
                 <h6 class="m-0 font-weight-bold text-primary mt-2">Sipariş Tarihi : {{ $payment->created_at }}</h6>
                 <h6 class="m-0 font-weight-bold text-primary mt-2">Kart Bilgisi : {{ $payment->paymentMethod->card_number }}</h6>
                 <h6 class="m-0 font-weight-bold text-primary mt-2">Adres Bilgisi : {{ $payment->address->address }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary mt-2">Müşteri Notu : {{ $payment->note }}</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

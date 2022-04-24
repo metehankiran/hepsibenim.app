@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\ProductCart;
 use App\Models\Setting;
@@ -27,7 +29,7 @@ class HomeController extends Controller
                 $this->user = Auth::user();
                 $productCart = ProductCart::where('user_id', $this->user->id)->where('payment_id', null)->get();
                 $total = 0;
-                foreach($productCart as $cart) {
+                foreach ($productCart as $cart) {
                     $total += $cart->quantity * $cart->product->price;
                 }
                 view()->share('productCart', $productCart);
@@ -46,11 +48,38 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $connect_web = simplexml_load_file('http://www.tcmb.gov.tr/kurlar/today.xml');    
+        $connect_web = simplexml_load_file('http://www.tcmb.gov.tr/kurlar/today.xml');
         $currency['usd_buying'] = $connect_web->Currency[0]->BanknoteBuying;
         $currency['usd_selling'] = $connect_web->Currency[0]->BanknoteSelling;
         $currency['euro_buying'] = $connect_web->Currency[3]->BanknoteBuying;
-        $currency['euro_selling'] = $connect_web->Currency[3]->BanknoteSelling; 
+        $currency['euro_selling'] = $connect_web->Currency[3]->BanknoteSelling;
+
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $paymentMethod = PaymentMethod::where('user_id', $user->id)->count();
+            if ($paymentMethod < 1) {
+                PaymentMethod::create([
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'card_number' => '',
+                    'expiration_date' => '',
+                    'cvv' => '',
+                    'method' => 'paypal',
+                ]);
+            }
+            $address = Address::where('user_id', $user->id)->count();
+            if ($address < 1) {
+                Address::create([
+                    'user_id' => $user->id,
+                    'address' => '',
+                    'city' => '',
+                    'state' => '',
+                    'zip' => '',
+                    'country' => '',
+                ]);
+            }
+        }
 
         $sliders = Slider::all();
         $brands = Brand::all();
@@ -88,11 +117,11 @@ class HomeController extends Controller
         $products = $category->products;
         return view('frontend.pages.category', compact('category', 'products'));
     }
-    
+
     public function contact()
     {
         $setting = Setting::first();
-        return view('frontend.pages.contact', compact('setting'));  
+        return view('frontend.pages.contact', compact('setting'));
     }
 
     public function contactStore(Request $request)
