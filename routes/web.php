@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCartController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/setup', [HomeController::class, 'setup']);
+Route::get('/storage-link', function(){
+    Artisan::call('storage:link');
+    return redirect()->back();
+});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{product:slug}', [HomeController::class, 'product'])->name('product.show');
 Route::get('/products', [HomeController::class, 'products'])->name('products');

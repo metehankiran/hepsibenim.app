@@ -117,6 +117,7 @@ class HomeController extends Controller
     {
         Artisan::call('migrate:fresh');
         Artisan::call('db:seed');
+        Artisan::call('storage:link');
         return redirect()->route('home')->with('success', 'Veritabanı başarıyla güncellendi!');
     }
 }
