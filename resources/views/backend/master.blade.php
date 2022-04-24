@@ -20,9 +20,9 @@
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('backend.admin.home') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Arayüz</span></a>
+                <a class="nav-link" href="{{ route('home') }}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Websiteye Git</span></a>
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">

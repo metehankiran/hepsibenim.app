@@ -37,7 +37,7 @@
                             <div class="accordion mt-n1" id="shop-categories">
                                 @foreach ($categories as $category)
                                 <div class="accordion-item">
-                                    <h3 class="accordion-header"><a style="font-size:1rem;letter-space:1rem;font-weight:{{ (request()->segment(2) == $category->slug) ? '600' : '200' }}" class="active" href="{{ route('category',$category) }}">{{ $category->title }} - ({{ $category->products->count() }} ürün)</a></h3>
+                                    <h3 class="accordion-header"><a style="font-size:1rem;letter-space:1rem;font-weight:{{ (request()->segment(2) == $category->slug) ? '600' : '200' }}" class="active" href="{{ route('category',$category) }}">{{ $category->title }} - ({{ $category->products->where('is_active')->count() }} ürün)</a></h3>
                                 </div>
                                 @endforeach
                             </div>
@@ -58,7 +58,7 @@
                 </div>
                 <!-- Products grid-->
                 <div class="row mx-n2">
-                @foreach ($products as $product)
+                @foreach ($products->where('is_active', true) as $product)
                     <!-- Product-->
                     <div class="col-md-4 col-sm-6 px-2 mb-4">
                         <div class="card product-card">

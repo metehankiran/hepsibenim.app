@@ -109,7 +109,9 @@
             </a> @include('frontend.components.navbar') <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
-              </button> @auth <div class="dropdown">
+              </button>
+              @if(Auth::check() && Auth()->user()->is_admin)<a class="btn btn-primary" href="{{ route('backend.admin.home') }}">Yönetici Arayüzü</a>@endif
+              @auth <div class="dropdown">
                 <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('user.profile') }}" data-toggle="dropdown" aria-expanded="false">
                   <div class="navbar-tool-icon-box">
                     <i class="navbar-tool-icon ci-user"></i>
